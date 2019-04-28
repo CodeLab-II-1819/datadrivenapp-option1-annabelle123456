@@ -29,6 +29,8 @@ int MenuChoice = 0;
 bool keywords;
 bool countTweets;
 
+int linecount = 0;
+
 void Menu() {
 	cout << "       {{{{{{{{{}}}}}}}}}" << endl;
 	cout << "{{{{{{{{  Search Tweets }}}}}}}}" << endl;
@@ -57,6 +59,7 @@ void DisplayTweets() {
 		pos = Tweets.find(searchWord);
 		if (pos != string::npos) {
 			cout << Tweets << endl;
+			cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 			cout << endl;
 		}
 	}
@@ -71,7 +74,7 @@ void CurrentMenu() { //Get current menu and display it
 	}
 
 	if (countTweets) {
-
+		currentVector = CountMenu;
 	}
 
 	for (int i = 0; i < currentVector.size(); i++) {
@@ -120,6 +123,20 @@ int main() {
 		cout << "Enter a word to search and all tweets with that word will be shown: " << endl;
 		cin >> searchWord;
 		DisplayTweets();
+		break;
+		if (cin.fail()) {
+			cout << "Invalid Input...";
+		}
+		break;
+	case 4:
+		cout << "Please wait ..." << endl;
+		while (getline(inFile, Tweets)) {
+			linecount++;
+		}
+		system("CLS");
+		cout << "Please wait ..." << endl;
+		cout << "The total number of tweets is: " << linecount << endl;
+		cout << endl;
 		break;
 
 	}
