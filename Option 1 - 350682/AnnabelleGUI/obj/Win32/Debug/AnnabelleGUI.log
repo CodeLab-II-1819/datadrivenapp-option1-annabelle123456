@@ -1,0 +1,19 @@
+﻿  main.cpp
+  ofApp.cpp
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\annabellegui\src\ofapp.cpp(8): warning C4996: 'ofImage_<unsigned char>::loadImage': Use load instead
+  d:\openframeworks\openframworks\libs\openframeworks\graphics\ofimage.h(227): note: see declaration of 'ofImage_<unsigned char>::loadImage'
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\annabellegui\src\ofapp.cpp(9): warning C4996: 'ofImage_<unsigned char>::loadImage': Use load instead
+  d:\openframeworks\openframworks\libs\openframeworks\graphics\ofimage.h(227): note: see declaration of 'ofImage_<unsigned char>::loadImage'
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\annabellegui\src\ofapp.cpp(10): warning C4996: 'ofImage_<unsigned char>::loadImage': Use load instead
+  d:\openframeworks\openframworks\libs\openframeworks\graphics\ofimage.h(227): note: see declaration of 'ofImage_<unsigned char>::loadImage'
+     Creating library bin\AnnabelleGUI_debug.lib and object bin\AnnabelleGUI_debug.exp
+  AnnabelleGUI.vcxproj -> D:\OpenFrameworks\OpenFramworks\apps\myApps\CodelabRepo\datadrivenapp-option1-annabelle123456\Option 1 - 350682\AnnabelleGUI\bin\AnnabelleGUI_debug.exe
+  
+  	                   2	D:\OpenFrameworks\OpenFramworks\libs\fmodex\lib\vs\Win32\
+  	    New File  		 1266176	D:\OpenFrameworks\OpenFramworks\libs\fmodex\lib\vs\Win32\fmodex.dll
+  	    New File  		 1312768	D:\OpenFrameworks\OpenFramworks\libs\fmodex\lib\vs\Win32\fmodexL.dll
+  
+  	                   1	D:\OpenFrameworks\OpenFramworks\libs\FreeImage\lib\vs\Win32\
+  	  *EXTRA File 		 1266176	D:\OpenFrameworks\OpenFramworks\apps\myApps\CodelabRepo\datadrivenapp-option1-annabelle123456\Option 1 - 350682\AnnabelleGUI\bin\fmodex.dll
+  	  *EXTRA File 		 1312768	D:\OpenFrameworks\OpenFramworks\apps\myApps\CodelabRepo\datadrivenapp-option1-annabelle123456\Option 1 - 350682\AnnabelleGUI\bin\fmodexL.dll
+  	    New File  		 6018560	D:\OpenFrameworks\OpenFramworks\libs\FreeImage\lib\vs\Win32\FreeImage.dll
