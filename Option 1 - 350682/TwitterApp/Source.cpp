@@ -6,11 +6,10 @@
 using namespace std;
 
 string Tweets;
-string TweetCount;
 string searchWord;
+string searchCounter;
 ifstream inFile;
 size_t pos;
-
 vector<string>currentVector;
 
 vector<string> KeywordMenu = {
@@ -22,9 +21,11 @@ vector<string> KeywordMenu = {
 
 vector<string> CountMenu = {
 	"1 - ",
-	"2 - ",
+	"2 - Count Tweets mentioning politics",
 	"3 - "
 };
+
+vector<string> politicalWords = { "congress","Congress","abortion","Abortion","president","President","immigration","Immigration", "election", "Election" };
 
 int MenuChoice = 0;
 bool keywords;
@@ -32,6 +33,7 @@ bool countTweets;
 bool otherMenu;
 
 int linecount = 0;
+int TweetCount = 0;
 
 void Menu() {
 	cout << "       {{{{{{{{{}}}}}}}}}" << endl;
@@ -61,6 +63,20 @@ void Keywords() {
 		cout << KeywordMenu[i] << endl;
 	}
 	cout << endl;
+}
+
+void CountPoliticsTweets() {
+
+	while (!inFile.eof()) {
+		for (int i = 0; i < politicalWords.size(); i++) {
+
+			getline(inFile, searchCounter);
+			if (searchCounter.find(politicalWords[i]) != searchCounter.npos) {
+				TweetCount++;
+			}
+		}
+	}
+	inFile.close();
 }
 
 void DisplayTweets() {
@@ -138,7 +154,15 @@ int main() {
 		case 2:
 			system("CLS");
 			countTweets = true;
+			otherMenu = true;
 			CurrentMenu();
+			cout << "Enter a number from the menu: " << endl;
+			cin >> MenuChoice;
+			if (MenuChoice == 2 && otherMenu) {
+				CountPoliticsTweets();
+				cout << "The number of tweets that talk about politics is: " << TweetCount << endl;
+				cout << endl;
+			}
 			break;
 		case 3:
 			system("CLS");
