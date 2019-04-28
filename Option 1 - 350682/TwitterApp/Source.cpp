@@ -9,7 +9,7 @@ string Tweets;
 string searchWord;
 string searchCounter;
 ifstream inFile;
-size_t pos;
+size_t fileLength;
 vector<string>currentVector;
 
 vector<string> KeywordMenu = {
@@ -20,17 +20,20 @@ vector<string> KeywordMenu = {
 };
 
 vector<string> CountMenu = {
-	"1 - ",
+	"1 - Count Tweets mentioning LGBT",
 	"2 - Count Tweets mentioning politics",
 	"3 - "
 };
 
 vector<string> politicalWords = { "congress","Congress","abortion","Abortion","president","President","immigration","Immigration", "election", "Election" };
+vector<string> inclusivness = { "LGBT", "gay", "Gay", "lesbian", "Lesbian", "#TransWeek", "transgender", "Transgender" };
 
 int MenuChoice = 0;
 bool keywords;
 bool countTweets;
 bool otherMenu;
+bool politics;
+bool LGBT;
 
 int linecount = 0;
 int TweetCount = 0;
@@ -44,9 +47,10 @@ void Menu() {
 	vector<string> menuChoices = {
 		"1 - Show Tweets from Keywords",
 		"2 - Count Tweets",
-		"3 - Search for a Tweet",
+		"3 - Custom Search",
 		"4 - Count Total Tweets",
-		"5 - Close Software"
+		"5 - Count ReTweets",
+		"6 - Exit Program"
 	};
 	for (int i = 0; i < menuChoices.size(); i++) {
 		cout << menuChoices[i] << endl;
@@ -65,13 +69,20 @@ void Keywords() {
 	cout << endl;
 }
 
-void CountPoliticsTweets() {
+void CountTweets() {
 
+	if (politics) {
+		currentVector = politicalWords;
+	}
+
+	if (LGBT) {
+		currentVector = inclusivness;
+	}
 	while (!inFile.eof()) {
-		for (int i = 0; i < politicalWords.size(); i++) {
+		for (int i = 0; i < currentVector.size(); i++) {
 
 			getline(inFile, searchCounter);
-			if (searchCounter.find(politicalWords[i]) != searchCounter.npos) {
+			if (searchCounter.find(currentVector[i]) != searchCounter.npos) {
 				TweetCount++;
 			}
 		}
@@ -79,12 +90,25 @@ void CountPoliticsTweets() {
 	inFile.close();
 }
 
+//void CountInclusiveTweets() {
+//	while (!inFile.eof()) {
+//		for (int i = 0; i < inclusivness.size(); i++) {
+//
+//			getline(inFile, searchCounter);
+//			if (searchCounter.find(inclusivness[i]) != searchCounter.npos) {
+//				TweetCount++;
+//			}
+//		}
+//	}
+//	inFile.close();
+//}
+
 void DisplayTweets() {
 
 	while (inFile.good()) {
 		getline(inFile, Tweets);
-		pos = Tweets.find(searchWord);
-		if (pos != string::npos) {
+		fileLength = Tweets.find(searchWord);
+		if (fileLength != string::npos) {
 			cout << Tweets << endl;
 			cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 			cout << endl;
@@ -158,10 +182,19 @@ int main() {
 			CurrentMenu();
 			cout << "Enter a number from the menu: " << endl;
 			cin >> MenuChoice;
+			if (MenuChoice == 1 && otherMenu) {
+				LGBT = true;
+				CountTweets();
+				cout << "The number of tweets that talk about LGBT is: " << TweetCount << endl;
+			}
 			if (MenuChoice == 2 && otherMenu) {
-				CountPoliticsTweets();
+				politics = true;
+				CountTweets();
 				cout << "The number of tweets that talk about politics is: " << TweetCount << endl;
 				cout << endl;
+			}
+			if (MenuChoice == 3 && otherMenu) {
+				cout << "The number of tweets that talk about -- is: " << TweetCount << endl;
 			}
 			break;
 		case 3:
@@ -183,11 +216,14 @@ int main() {
 			cout << "The total number of tweets is: " << linecount << endl;
 			cout << endl;
 			break;
+		case 5:
+			system("CLS");
+			//Count Retweets
 		}
 
 		inFile.open("sampleTweets.csv");
 
-	} while (MenuChoice != 5);
+	} while (MenuChoice != 6);
 
 	system("pause");
 }
