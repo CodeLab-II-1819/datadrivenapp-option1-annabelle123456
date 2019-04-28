@@ -5,24 +5,24 @@
 
 using namespace std;
 
-string Tweets; 
-string searchWord; 
-string searchCounter;
-ifstream inFile; 
-size_t fileLength; 
-vector<string> currentVector; 
+string Tweets; // The string sampleTweets.csv ill be read as
+string searchWord; // The search query 
+string searchCounter;// The string sampleTweets.csv ill be read as for counting tweets
+ifstream inFile; // SampleTweets.csv
+size_t fileLength; // Size_t stores the maximum size of the Tweets string
+vector<string> currentVector; // A temporary vector to reduce code replication
 
 int linecount = 0;
 int TweetCount = 0;
 
-vector<string> KeywordMenu = { 
+vector<string> KeywordMenu = { // Keyword Menu
 	" 1 - Show tweets that mention Paris",
 	" 2 - Show tweets that mention Dreamworks",
 	" 3 - Show Tweets that mention Uber",
 	" 4 - Return to Main Menu"
 };
 
-vector<string> CountMenu = { 
+vector<string> CountMenu = { // Tweet Count Menu
 	" 1 - Count Tweets mentioning LGBT",
 	" 2 - Count Tweets mentioning politics",
 	" 3 - Count Tweets mentioning technology",
@@ -34,16 +34,16 @@ vector<string> Inclusivness = { "LGBT", "gay", "Gay", "lesbian", "Lesbian", "#Tr
 vector<string> Technology = { "Phone", "phone", "Computer", "computer", "Tech", "tech", "coding", "c++", "C++", "Java", "iPhone", "Android", "iOS", "Samsung" };
 vector<string> Money = { "$", "cash", "money", "Cash", "Money" };
 
-int MenuChoice = 0; 
-bool keywords; 
+int MenuChoice = 0; // The user's input in menus
+bool keywords; //These booleans check if the user has entered a certain area of the menus or have selected specific items
 bool countTweets;
-bool otherMenu; 
-bool politics; 
+bool otherMenu; // This checks if any menu other than the main one is being displayed
+bool politics; // Like the ones that follow these booleans identify what query the user has selected
 bool LGBT;
 bool tech;
 bool money;
 
-void Menu() { 
+void Menu() { //  Displays the Main menu
 	cout << "       {{{{{{{{{}}}}}}}}}" << endl;
 	cout << "{{{{{{{{  Search Tweets }}}}}}}}" << endl;
 	cout << "       {{{{{{{{{}}}}}}}}}" << endl;
@@ -66,14 +66,14 @@ void Menu() {
 	cout << endl;
 }
 
-void Keywords() {
+void Keywords() { // Prints the Keyword menu to console
 
 	for (int i = 0; i < KeywordMenu.size(); i++) {
 		cout << KeywordMenu[i] << endl;
 	}
 }
 
-void DisplayTweets() {
+void DisplayTweets() {  // This function reads the sampleTweets.csv file and returns it based on the searchWord string
 
 	while (inFile.good()) {
 		getline(inFile, Tweets);
@@ -90,7 +90,7 @@ void DisplayTweets() {
 	inFile.close();
 }
 
-void CurrentMenu() {
+void CurrentMenu() { //Get current menu and display it
 	cout << endl;
 
 	if (keywords) {
@@ -109,9 +109,9 @@ void CurrentMenu() {
 	cout << endl;
 }
 
-void CountTweets() { 
+void CountTweets() { //This function prints the current selected vector to console
 
-	if (politics) {
+	if (politics) { //Depending on the boolean selected this fumction prints the desired vector to console
 		currentVector = politicalWords;
 	}
 
@@ -128,7 +128,7 @@ void CountTweets() {
 	}
 
 	while (!inFile.eof()) {
-		for (int i = 0; i < currentVector.size(); i++) { 
+		for (int i = 0; i < currentVector.size(); i++) { //This for loop counts the number of tweets based of the search terms in the vector selected
 
 			getline(inFile, searchCounter);
 			if (searchCounter.find(currentVector[i]) != searchCounter.npos) {
@@ -141,31 +141,31 @@ void CountTweets() {
 
 int main() {
 
-	inFile.open("sampleTweets.csv");  
+	inFile.open("sampleTweets.csv");  //Open sampleTweets.csv
 	if (!inFile) {
 		cout << "Unable to open file" << endl;
 	}
 
-	otherMenu = false; 
+	otherMenu = false; // By default otherMenu is false when the Main Menu is active
 
 	do {
 
-		Menu(); 
+		Menu(); // Calls the Menu() function
 		cout << "Enter a number corressponding to the menu: " << endl;
-		cin >> MenuChoice;
+		cin >> MenuChoice; // User enters their choice
 
-		switch (MenuChoice) 
+		switch (MenuChoice) // This switch handles input
 		{
 		case 1:
-			system("CLS");
-			keywords = true;
+			system("CLS"); // Clears the screen
+			keywords = true; // Sets the keyword menu as the desired menu
 			otherMenu = true;
-			CurrentMenu(); 
+			CurrentMenu(); //Displays the desired menu
 			cout << "Enter a number from the menu: " << endl;
 			cin >> MenuChoice;
-			if (MenuChoice == 1 && otherMenu) { 
+			if (MenuChoice == 1 && otherMenu) { // These inputs will only work if otherMenu is active 
 				searchWord = "Paris";
-				DisplayTweets(); 
+				DisplayTweets(); // Calls the DisplayTweets function
 			}
 			if (MenuChoice == 2 && otherMenu) {
 				searchWord = "Dreamworks";
@@ -181,7 +181,7 @@ int main() {
 			break;
 		case 2:
 			system("CLS");
-			countTweets = true; 
+			countTweets = true; // Sets the count tweets menu as the desired menu
 			otherMenu = true;
 			CurrentMenu();
 			cout << "Enter a number from the menu: " << endl;
@@ -190,7 +190,7 @@ int main() {
 				cout << "Invalid input" << endl;
 			}
 			if (MenuChoice == 1 && otherMenu) {
-				LGBT = true;
+				LGBT = true; // Sets the Inclusivness vector as the current vector
 				CountTweets();
 				cout << "The number of tweets that mention about LGBT is: " << TweetCount << endl;
 				cout << endl;
@@ -220,7 +220,7 @@ int main() {
 		case 3:
 			system("CLS");
 			cout << "Enter a word to search and all tweets with that word will be shown: " << endl;
-			cin >> searchWord;
+			cin >> searchWord; // Allows user to set the search term
 			DisplayTweets();
 			if (cin.fail()) {
 				cout << "Invalid Input...";
@@ -229,11 +229,11 @@ int main() {
 		case 4:
 			cout << "Please wait ..." << endl;
 			while (getline(inFile, Tweets)) {
-				linecount++;
+				linecount++; // Counts the lines in sampleTweets.csv
 			}
 			system("CLS");
 			cout << "Please wait ..." << endl;
-			cout << "The total number of tweets is: " << linecount << endl;
+			cout << "The total number of tweets is: " << linecount << endl; // Displays number of lined in sampleTweets.csv
 			cout << endl;
 			break;
 		case 5:
