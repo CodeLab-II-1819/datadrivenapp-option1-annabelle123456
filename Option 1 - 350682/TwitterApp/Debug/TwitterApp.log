@@ -1,4 +1,6 @@
 ﻿  Source.cpp
-d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(43): warning C4018: '<': signed/unsigned mismatch
-d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(77): warning C4018: '<': signed/unsigned mismatch
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(49): warning C4018: '<': signed/unsigned mismatch
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(60): warning C4018: '<': signed/unsigned mismatch
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(91): warning C4018: '<': signed/unsigned mismatch
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(134): warning C4804: '>=': unsafe use of type 'bool' in operation
   TwitterApp.vcxproj -> D:\OpenFrameworks\OpenFramworks\apps\myApps\CodelabRepo\datadrivenapp-option1-annabelle123456\Option 1 - 350682\TwitterApp\Debug\TwitterApp.exe

@@ -16,7 +16,8 @@ vector<string>currentVector;
 vector<string> KeywordMenu = {
 	"1 - Show tweets that mention Paris",
 	"2 - Show tweets that mention Dreamworks",
-	"3 - Show Tweets that mention Uber"
+	"3 - Show Tweets that mention Uber",
+	"4 - Return to Main Menu"
 };
 
 vector<string> CountMenu = {
@@ -28,6 +29,7 @@ vector<string> CountMenu = {
 int MenuChoice = 0;
 bool keywords;
 bool countTweets;
+bool otherMenu;
 
 int linecount = 0;
 
@@ -35,6 +37,8 @@ void Menu() {
 	cout << "       {{{{{{{{{}}}}}}}}}" << endl;
 	cout << "{{{{{{{{  Search Tweets }}}}}}}}" << endl;
 	cout << "       {{{{{{{{{}}}}}}}}}" << endl;
+	cout << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	vector<string> menuChoices = {
 		"1 - Show Tweets from Keywords",
 		"2 - Count Tweets",
@@ -43,13 +47,20 @@ void Menu() {
 		"5 - Close Software"
 	};
 	for (int i = 0; i < menuChoices.size(); i++) {
-		cout << endl;
 		cout << menuChoices[i] << endl;
-		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	}
 	cout << endl;
 
 	cin >> MenuChoice;
+}
+
+void Keywords() {
+
+	for (int i = 0; i < KeywordMenu.size(); i++) {
+		cout << KeywordMenu[i] << endl;
+	}
+	cout << endl;
 }
 
 void DisplayTweets() {
@@ -93,53 +104,66 @@ int main() {
 		cout << "Unable to open file" << endl;
 	}
 
-	Menu();
-	cout << "Enter your choice corressponding to the menu: " << endl;
-	cin >> MenuChoice;
-
 	do {
+
 		Menu();
-		cout << "Enter a word to search: " << endl;
-		if (cin.fail()) {
-			cout << "Invalid Input ..." << endl;
+		cout << "Enter a number corressponding to the menu: " << endl;
+		cin >> MenuChoice;
+
+		switch (MenuChoice)
+		{
+		case 1:
+			system("CLS");
+			keywords = true;
+			otherMenu = true;
+			CurrentMenu();
+			cout << "Enter a number from the menu: " << endl;
+			cin >> MenuChoice;
+			if (MenuChoice == 1 && otherMenu) {
+				searchWord = "Paris";
+				DisplayTweets();
+			}
+			if (MenuChoice == 2 && otherMenu) {
+				searchWord = "Dreamworks";
+				DisplayTweets();
+			}
+			if (MenuChoice == 3 && otherMenu) {
+				searchWord = "Uber";
+				DisplayTweets();
+			}
+			if (MenuChoice && otherMenu >= 4) {
+				cout << "Invalid input" << endl;
+			}
+			break;
+		case 2:
+			system("CLS");
+			countTweets = true;
+			CurrentMenu();
+			break;
+		case 3:
+			system("CLS");
+			cout << "Enter a word to search and all tweets with that word will be shown: " << endl;
+			cin >> searchWord;
+			DisplayTweets();
+			if (cin.fail()) {
+				cout << "Invalid Input...";
+			}
+			break;
+		case 4:
+			cout << "Please wait ..." << endl;
+			while (getline(inFile, Tweets)) {
+				linecount++;
+			}
+			system("CLS");
+			cout << "Please wait ..." << endl;
+			cout << "The total number of tweets is: " << linecount << endl;
+			cout << endl;
+			break;
 		}
+
+		inFile.open("sampleTweets.csv");
+
 	} while (MenuChoice != 5);
-
-	switch (MenuChoice)
-	{
-	case 1:
-		system("CLS");
-		keywords = true;
-		CurrentMenu();
-		break;
-	case 2:
-		system("CLS");
-		countTweets = true;
-		break;
-		CurrentMenu();
-		break;
-	case 3:
-		system("CLS");
-		cout << "Enter a word to search and all tweets with that word will be shown: " << endl;
-		cin >> searchWord;
-		DisplayTweets();
-		break;
-		if (cin.fail()) {
-			cout << "Invalid Input...";
-		}
-		break;
-	case 4:
-		cout << "Please wait ..." << endl;
-		while (getline(inFile, Tweets)) {
-			linecount++;
-		}
-		system("CLS");
-		cout << "Please wait ..." << endl;
-		cout << "The total number of tweets is: " << linecount << endl;
-		cout << endl;
-		break;
-
-	}
 
 	system("pause");
 }
