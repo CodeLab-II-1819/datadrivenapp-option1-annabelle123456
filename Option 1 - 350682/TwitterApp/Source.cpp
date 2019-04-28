@@ -19,6 +19,12 @@ vector<string> KeywordMenu = {
 	"3 - Show Tweets that mention Uber"
 };
 
+vector<string> CountMenu = {
+	"1 - ",
+	"2 - ",
+	"3 - "
+};
+
 int MenuChoice = 0;
 bool keywords;
 bool countTweets;
@@ -107,6 +113,15 @@ int main() {
 		system("CLS");
 		countTweets = true;
 		break;
+		CurrentMenu();
+		break;
+	case 3:
+		system("CLS");
+		cout << "Enter a word to search and all tweets with that word will be shown: " << endl;
+		cin >> searchWord;
+		DisplayTweets();
+		break;
+
 	}
 
 	system("pause");

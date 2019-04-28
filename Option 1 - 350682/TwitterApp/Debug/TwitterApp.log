@@ -1,3 +1,4 @@
 ﻿  Source.cpp
-d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(27): warning C4018: '<': signed/unsigned mismatch
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(43): warning C4018: '<': signed/unsigned mismatch
+d:\openframeworks\openframworks\apps\myapps\codelabrepo\datadrivenapp-option1-annabelle123456\option 1 - 350682\twitterapp\source.cpp(77): warning C4018: '<': signed/unsigned mismatch
   TwitterApp.vcxproj -> D:\OpenFrameworks\OpenFramworks\apps\myApps\CodelabRepo\datadrivenapp-option1-annabelle123456\Option 1 - 350682\TwitterApp\Debug\TwitterApp.exe
